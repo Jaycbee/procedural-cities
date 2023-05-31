@@ -1,4 +1,7 @@
+
 // code adapted from http://www.tmwhere.com/city_generation.html
+
+// @ts-ignore
 import { noise } from "perlin";
 import seedrandom from "seedrandom";
 seedrandom;
@@ -401,7 +404,7 @@ function globalGoalsGenerate(previousSegment: Segment) {
 }
 class PriorityQueue<T> {
   public elements: T[] = [];
-  constructor(private getPriority: (ele: T) => number) {}
+  constructor(private getPriority: (ele: T) => number) { }
   enqueue(...ele: T[]) {
     this.elements.push(...ele);
   }
@@ -489,4 +492,3 @@ function seedRandom(seed: string) {
     seed,
   );
 }
-Object.assign(window, { _mapgen: this });

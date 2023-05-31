@@ -4,7 +4,7 @@ import { config } from "./config";
 import * as PIXI from "pixi.js-legacy";
 
 // parse url parameters such as ?a.b.c=x&d=y and assign them to config.a.b.c
-(location.search.substr(1) + "&" + location.hash.substr(1))
+(location.search.match("&(.+)")?.[1] || "" + "&" + location.hash.match("(.+)&(.+)")?.[2])
   .split(/[&;]/)
   .forEach((item) => {
     const [k, v] = item.split("=");
@@ -251,8 +251,8 @@ function animate(timestamp: number) {
             pop > config.NORMAL_BRANCH_POPULATION_THRESHOLD
               ? 255
               : pop > config.HIGHWAY_BRANCH_POPULATION_THRESHOLD
-              ? 200
-              : 150;
+                ? 200
+                : 150;
         } else {
           v = (255 - pop * 255) | 0;
         }
