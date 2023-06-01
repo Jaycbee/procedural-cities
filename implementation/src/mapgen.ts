@@ -494,3 +494,4 @@ function seedRandom(seed: string) {
 }
 
 if (typeof window != "undefined") { Object.assign(window, { _mapgen: this }); }
+export { config } // forward config instance 

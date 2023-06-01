@@ -1,5 +1,4 @@
 import * as path from "path";
-
 import { GeneratorResult } from "./src/mapgen";
 
 
@@ -32,9 +31,7 @@ module.exports = {
 
   devServer: {
     inline: true,
-
     port: 8080,
-
 
     setup(app: any) {
 
@@ -58,7 +55,12 @@ module.exports = {
 
         import("./src/mapgen")
           .then(module => {
-            console.log(req);
+
+            for (var k in req.query) {
+              if (typeof module.config != "undefined") {
+                module.config[k] = req.query[k] as number
+              }
+            }
 
             let generator: Iterator<GeneratorResult> = module.generate(`${Math.random()}`);
             let final_generation;
