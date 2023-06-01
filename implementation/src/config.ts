@@ -33,7 +33,7 @@ export const config = {
   /** resolution of the heatmap overlay */
   HEATMAP_PIXEL_DIM: 25,
   /** draw population heatmap */
-  DRAW_HEATMAP: true,
+  DRAW_HEATMAP: false,
   /** threshold heatmap at *_BRANCH_POPULATION_THRESHOLD */
   HEATMAP_AS_THRESHOLD: false,
   QUADTREE_PARAMS: { x: -2e4, y: -2e4, width: 4e4, height: 4e4 },
@@ -41,7 +41,7 @@ export const config = {
   QUADTREE_MAX_LEVELS: 10,
   DEBUG: false,
   /** disallow branching of normal streets from highways */
-  ONLY_HIGHWAYS: true,
+  ONLY_HIGHWAYS: false,
   /** 80 is good value for displaying segments as arrows */
   ARROWHEAD_SIZE: 0,
   /** draw a circle at the base of segments (30 is good) (very slow for some reason) */

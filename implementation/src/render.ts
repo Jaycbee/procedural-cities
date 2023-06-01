@@ -4,7 +4,7 @@ import { config } from "./config";
 import * as PIXI from "pixi.js-legacy";
 
 // parse url parameters such as ?a.b.c=x&d=y and assign them to config.a.b.c
-(location.search.match("&(.+)")?.[1] || "" + "&" + location.hash.match("(.+)&(.+)")?.[2])
+(location.search.match("\\?(.+)")?.[1] || "" + "&" + location.hash.match("(.+)&(.+)")?.[2])
   .split(/[&;]/)
   .forEach((item) => {
     const [k, v] = item.split("=");
@@ -290,8 +290,10 @@ function animate(timestamp: number) {
       }
     }
   }
-
   requestAnimationFrame(animate);
+  renderSegment(stuff.segments[0], 0x290af5);
+  renderSegment(stuff.segments[0].links.f[0], 0x4535ab);
+  renderSegment(stuff.segments[0].links.b[0], 0x35ab70);
   renderer.render(stage);
 }
 function onResize() {

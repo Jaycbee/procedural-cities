@@ -492,3 +492,5 @@ function seedRandom(seed: string) {
     seed,
   );
 }
+
+if (window) { Object.assign(window, { _mapgen: this }); }

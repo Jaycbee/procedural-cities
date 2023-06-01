@@ -1,10 +1,6 @@
 import * as path from "path";
 
-//import { noise } from "perlin";
-//noise
 import { GeneratorResult } from "./src/mapgen";
-
-
 
 
 
@@ -40,14 +36,25 @@ module.exports = {
     port: 8080,
 
 
-
     setup(app: any) {
 
       var bodyParser = require('body-parser');
       app.use(bodyParser.json());
 
-      app.get("/get/some-data", function (req: any, res: any) {
 
+      /* | side-load  generator and output JSON list of segments |
+
+        Segments : [
+          {
+            u : {x : number, y : number},
+            v : {x : number, y : number}
+            t? : number
+          }
+        ]
+
+      */
+
+      app.get("/compute", function (req: any, res: any) {
 
         import("./src/mapgen")
           .then(module => {
@@ -66,8 +73,17 @@ module.exports = {
             }
 
             if (final_generation) {
-              console.log(final_generation.value);
-              res.send(final_generation.value.segments.length.toString());
+
+              let segments = final_generation.value.segments;
+              let output = []
+
+              for (const seg of segments) {
+                output.push({
+                  'u': seg.start,
+                  'v': seg.end
+                })
+              }
+              res.send(JSON.stringify(output));
             }
           })
           .catch(error => console.log(error));
