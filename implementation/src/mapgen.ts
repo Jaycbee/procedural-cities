@@ -493,4 +493,4 @@ function seedRandom(seed: string) {
   );
 }
 
-if (window) { Object.assign(window, { _mapgen: this }); }
+if (typeof window != "undefined") { Object.assign(window, { _mapgen: this }); }
